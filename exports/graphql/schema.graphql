@@ -162,7 +162,6 @@ type Question {
   users_permissions_user: UsersPermissionsUser
   published_at: DateTime
   attachments(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
-  answers(sort: String, limit: Int, start: Int, where: JSON): [Answer]
 }
 
 type QuestionConnection {
@@ -226,7 +225,6 @@ input QuestionInput {
   description: String
   attachments: [ID]
   users_permissions_user: ID
-  answers: [ID]
   published_at: DateTime
   created_by: ID
   updated_by: ID
@@ -237,7 +235,6 @@ input editQuestionInput {
   description: String
   attachments: [ID]
   users_permissions_user: ID
-  answers: [ID]
   published_at: DateTime
   created_by: ID
   updated_by: ID
