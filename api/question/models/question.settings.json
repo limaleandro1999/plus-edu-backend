@@ -31,6 +31,9 @@
     "users_permissions_user": {
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "answers": {
+      "collection": "answer"
     }
   }
 }

@@ -1,8 +1,10 @@
 'use strict';
+const { sanitizeEntity } = require('strapi-utils');
 
-/**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/concepts/controllers.html#core-controllers)
- * to customize this controller
- */
-
-module.exports = {};
+module.exports = {
+  async create(ctx) {
+    const { id } = ctx.req.user;
+    const answer = await strapi.services.answer.create({ ...ctx.request.body, users_permissions_user: id });
+    return sanitizeEntity(answer, { model: strapi.models.answer });
+  }
+};
