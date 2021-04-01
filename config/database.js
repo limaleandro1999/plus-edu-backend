@@ -1,6 +1,6 @@
 const parse = require('pg-connection-string').parse;
-const config = parse(process.env.DATABASE_URL);
 const hasConnectionURL = !!process.env.DATABASE_URL;
+const config = hasConnectionURL ? parse(process.env.DATABASE_URL) : null;
 
 module.exports = ({ env }) => ({
   defaultConnection: 'default',
@@ -14,9 +14,13 @@ module.exports = ({ env }) => ({
         database: hasConnectionURL ? config.database : env('DATABASE_NAME', 'plus-edu'),
         username: hasConnectionURL ? config.user : env('DATABASE_USERNAME', 'postgres'),
         password: hasConnectionURL ? config.password : env('DATABASE_PASSWORD', 'root'),
-        ssl: env.bool('DATABASE_SSL', false),
+        ssl: {
+          rejectUnauthorized: false,
+        },
       },
-      options: {}
+      options: {
+        ssl: true,
+      },
     },
   },
 });
