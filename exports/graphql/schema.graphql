@@ -160,6 +160,7 @@ type Question {
   title: String
   description: String
   users_permissions_user: UsersPermissionsUser
+  category: String
   published_at: DateTime
   attachments(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
   answers(sort: String, limit: Int, start: Int, where: JSON): [Answer]
@@ -183,6 +184,7 @@ type QuestionGroupBy {
   title: [QuestionConnectionTitle]
   description: [QuestionConnectionDescription]
   users_permissions_user: [QuestionConnectionUsers_permissions_user]
+  category: [QuestionConnectionCategory]
   published_at: [QuestionConnectionPublished_at]
 }
 
@@ -216,6 +218,11 @@ type QuestionConnectionUsers_permissions_user {
   connection: QuestionConnection
 }
 
+type QuestionConnectionCategory {
+  key: String
+  connection: QuestionConnection
+}
+
 type QuestionConnectionPublished_at {
   key: DateTime
   connection: QuestionConnection
@@ -227,6 +234,7 @@ input QuestionInput {
   attachments: [ID]
   users_permissions_user: ID
   answers: [ID]
+  category: String
   published_at: DateTime
   created_by: ID
   updated_by: ID
@@ -238,6 +246,7 @@ input editQuestionInput {
   attachments: [ID]
   users_permissions_user: ID
   answers: [ID]
+  category: String
   published_at: DateTime
   created_by: ID
   updated_by: ID
@@ -757,7 +766,7 @@ type deleteUserPayload {
   user: UsersPermissionsUser
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Answer | AnswerConnection | AnswerAggregator | AnswerGroupBy | AnswerConnectionId | AnswerConnectionCreated_at | AnswerConnectionUpdated_at | AnswerConnectionDescription | AnswerConnectionQuestion | AnswerConnectionUsers_permissions_user | AnswerConnectionPublished_at | createAnswerPayload | updateAnswerPayload | deleteAnswerPayload | Question | QuestionConnection | QuestionAggregator | QuestionGroupBy | QuestionConnectionId | QuestionConnectionCreated_at | QuestionConnectionUpdated_at | QuestionConnectionTitle | QuestionConnectionDescription | QuestionConnectionUsers_permissions_user | QuestionConnectionPublished_at | createQuestionPayload | updateQuestionPayload | deleteQuestionPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionType | UsersPermissionsUserConnectionFirstName | UsersPermissionsUserConnectionLastName | UsersPermissionsUserConnectionOcupation | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Answer | AnswerConnection | AnswerAggregator | AnswerGroupBy | AnswerConnectionId | AnswerConnectionCreated_at | AnswerConnectionUpdated_at | AnswerConnectionDescription | AnswerConnectionQuestion | AnswerConnectionUsers_permissions_user | AnswerConnectionPublished_at | createAnswerPayload | updateAnswerPayload | deleteAnswerPayload | Question | QuestionConnection | QuestionAggregator | QuestionGroupBy | QuestionConnectionId | QuestionConnectionCreated_at | QuestionConnectionUpdated_at | QuestionConnectionTitle | QuestionConnectionDescription | QuestionConnectionUsers_permissions_user | QuestionConnectionCategory | QuestionConnectionPublished_at | createQuestionPayload | updateQuestionPayload | deleteQuestionPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionType | UsersPermissionsUserConnectionFirstName | UsersPermissionsUserConnectionLastName | UsersPermissionsUserConnectionOcupation | createUserPayload | updateUserPayload | deleteUserPayload
 
 input InputID {
   id: ID!
