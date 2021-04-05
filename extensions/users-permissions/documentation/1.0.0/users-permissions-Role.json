@@ -574,7 +574,7 @@
                 "lastName": {
                   "type": "string"
                 },
-                "ocupation": {
+                "occupation": {
                   "type": "string"
                 },
                 "created_by": {
